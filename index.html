@@ -12,12 +12,7 @@
 
   <h1 class="jumbotron-fluid text-center display-1">Gif Generator</h1>
   <div class="row fa-align-center mb-3" id="gifButton">
-    <button class= "btn btn-secondary mx-1" data-gif="cat">Cats</button>
-    <button class= "btn btn-secondary mx-1" data-gif="racoon">Racoons</button>
-    <button class= "btn btn-secondary mx-1" data-gif="cars">Cars</button>
-    <button class= "btn btn-secondary mx-1" data-gif="weird al">Weird Al</button>
-    <button class= "btn btn-secondary mx-1" data-gif="beach">Beaches</button>
-    <button class= "btn btn-secondary mx-1" data-gif="mario bros">Mario Bros.</button>
+   
     
   </div>
   
@@ -36,73 +31,13 @@
 
       </div>
 
-    <div class="col-sm-8"></div>
+    <div class="col-8"></div>
       <div class="card">
         <div class="card-body" id="gifs-appear-here">
       </div>
     </div>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript">
-
-    $("button").on("click", function() {
-      var gif = $(this).attr("data-gif");
-      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        gif + "&api_key=dc6zaTOxFJmzC&limit=10";
-
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      })
-      .then(function(response) {
-
-        console.log(response);
-        
-        var results = response.data;
-
-         for (var i = 0; i < results.length; i++) {
-
-          var gifDiv = $("<div>");
-            var rating = results[i].rating;
-            var p = $("<p>").text("Rating: " + rating);
-              var gifImage = $("<img>");
-              gifImage.addClass("gif");
-              gifImage.attr("src", results[i].images.fixed_height.url);
-              gifImage.attr("data-still", results[i].images.fixed_height.url);
-              gifImage.attr("data-animate", results[i].images.fixed_height.url);
-              gifDiv.prepend(p);
-              gifDiv.prepend(gifImage);
-              
-              $("#gifs-appear-here").prepend(gifDiv);
-
-         }
-
-      });
-    });
-
-     $(".gif").on("click", function() {
-     
-      var state = $(this).attr("data-state");
-      
-      if (state === "still") {
-        $(this).attr("src", $(this).attr("data-animate"));
-        $(this).attr("data-state", "animate");
-      } 
-      
-      else {
-        $(this).attr("src", $(this).attr("data-still"));
-        $(this).attr("data-state", "still");
-      }
-    });
-
-    var queryParams = { "api-key": "dc6zaTOxFJmzC" };
-
-    queryParams.q = $("#search-term")
-      .val()
-      .trim();
-
-  </script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <script src="assets/app.js"></script>
 </body>
